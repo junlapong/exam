@@ -18,3 +18,5 @@ Technical Requirements
 5. graceful shutdown
 6. dump request/response to log file as json format
 7. configuration file for database connection
+8. any library and tools are ok to use
+9. any idea is ok, we need to see
