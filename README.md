@@ -15,7 +15,7 @@ Technical Requirements GO
 2. content-type is application/json
 3. unit testing coverage at least 60% / package
 4. store data to MongoDB
-5. graceful shutdown
+5. [graceful shutdown](https://github.com/pallat/gracefulshutdown)
 6. dump request/response to log file as json format
 7. configuration file for database connection
 8. any library and tools are ok to use
