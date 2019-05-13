@@ -1,0 +1,35 @@
+@host = http://localhost:1323
+
+###
+
+GET {{host}}/ HTTP/1.1
+
+###
+
+GET {{host}}/tasks/1 HTTP/1.1
+
+###
+
+POST {{host}}/tasks HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "sample",
+    "desc": "Test"
+}
+
+###
+
+PUT {{host}}/tasks/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Hello",
+    "desc": "Golang"
+}
+
+###
+
+DELETE {{host}}/tasks/2 HTTP/1.1
+
+###
