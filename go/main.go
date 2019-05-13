@@ -20,13 +20,18 @@ var seq = 1
 func main() {
 	e := echo.New()
 
-	e.GET("/", listTask)
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Todo API")
+	})
+
+	e.GET("/tasks", listTask)
 	e.GET("/tasks/:id", getTask)
 	e.POST("/tasks", addTask)
 	e.PUT("/tasks/:id", updateTask)
 	e.DELETE("/tasks/:id", deleteTask)
 
 	e.Static("/static", "static")
+
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
@@ -49,11 +54,13 @@ func addTask(c echo.Context) error {
 		return err
 	}
 
+	t.ID = seq
+	seq++
+
 	return c.JSON(http.StatusCreated, t)
 }
 
 func getTask(c echo.Context) error {
-
 	id, _ := strconv.Atoi(c.Param("id"))
 	fmt.Printf("GET: %d\n", id)
 
@@ -66,7 +73,6 @@ func getTask(c echo.Context) error {
 }
 
 func updateTask(c echo.Context) error {
-
 	t := new(Task)
 	if err := c.Bind(t); err != nil {
 		return err
@@ -80,7 +86,6 @@ func updateTask(c echo.Context) error {
 }
 
 func deleteTask(c echo.Context) error {
-
 	id, _ := strconv.Atoi(c.Param("id"))
 	fmt.Printf("DELETE: %d\n", id)
 
